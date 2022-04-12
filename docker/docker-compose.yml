@@ -5,12 +5,12 @@ services:
     ports:
       - 8080:8080
       - 9001:9001
-    image: openrouteservice/openrouteservice:latest
-#    build:
-#      context: ../
-#      args:
-#        ORS_CONFIG: ./openrouteservice/src/main/resources/ors-config-sample.json
-#        OSM_FILE: ./openrouteservice/src/main/files/heidelberg.osm.gz
+#    image: openrouteservice/openrouteservice:latest
+    build:
+      context: ../
+      args:
+        ORS_CONFIG: ./openrouteservice/src/main/resources/ors-config-sample.json
+        OSM_FILE: ./openrouteservice/src/main/files/heidelberg.osm.gz
     user: "${ORS_UID:-0}:${ORS_GID:-0}"
     volumes:
       - ./graphs:/ors-core/data/graphs
