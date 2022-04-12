@@ -20,10 +20,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.json.simple.JSONObject;
 
 @ApiModel(value = "Profile Weightings", parent = RequestProfileParams.class, description = "Describe additional weightings to be applied to edges on the routing.")
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class RequestProfileParamsWeightings {
+
+    public static final String PARAM_PREFER_POLYGONS = "prefer_polygons";
     public static final String PARAM_STEEPNESS_DIFFICULTY = "steepness_difficulty";
     public static final String PARAM_GREEN_INDEX = "green";
     public static final String PARAM_QUIETNESS = "quiet";
@@ -48,6 +51,13 @@ public class RequestProfileParamsWeightings {
     private Float quietIndex;
     @JsonIgnore
     private boolean hasQuietIndex = false;
+
+
+    @ApiModelProperty(name = PARAM_PREFER_POLYGONS, value = "Better areas to be preferred for the route. Formatted in GeoJSON as either a Polygon or Multipolygon object.")
+    @JsonProperty(PARAM_PREFER_POLYGONS)
+    private JSONObject preferredPolygons;
+    @JsonIgnore
+    private boolean hasPreferredPolygons = false;
 
     public Integer getSteepnessDifficulty() {
         return steepnessDifficulty;
@@ -76,6 +86,15 @@ public class RequestProfileParamsWeightings {
         hasQuietIndex = true;
     }
 
+    public JSONObject getPreferredPolygons() {
+        return preferredPolygons;
+    }
+
+    public void setPreferredPolygons(JSONObject preferIndex) {
+        this.preferredPolygons = preferIndex;
+        hasPreferredPolygons = true;
+    }
+
     public boolean hasSteepnessDifficulty() {
         return hasSteepnessDifficulty;
     }
@@ -87,4 +106,9 @@ public class RequestProfileParamsWeightings {
     public boolean hasQuietIndex() {
         return hasQuietIndex;
     }
+
+    public boolean hasPreferredPolygons() {
+        return hasPreferredPolygons;
+    }
+
 }

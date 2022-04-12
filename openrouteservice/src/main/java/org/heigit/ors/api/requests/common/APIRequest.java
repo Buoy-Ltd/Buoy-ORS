@@ -410,7 +410,12 @@ public class APIRequest {
                 pw.addParameter("factor", greenFactor);
                 params.add(pw);
             }
-
+            if (weightings.hasPreferredPolygons()) {
+                ProfileWeighting pw = new ProfileWeighting("prefer_polygons");
+                String json = weightings.getPreferredPolygons().toJSONString();
+                pw.addParameter("polygons", json);
+                params.add(pw);
+            }
             if (weightings.hasQuietIndex()) {
                 ProfileWeighting pw = new ProfileWeighting("quiet");
                 Float quietFactor = weightings.getQuietIndex();
