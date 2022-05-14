@@ -111,8 +111,8 @@
 			routing: {
 				enabled: true,
 				mode: "normal",
-				sources: ["openrouteservice-api-tests/data/heidelberg.osm.gz"],
-				init_threads: 2,
+				sources: ["openrouteservice-api-tests/data/great-britain-latest.osm.pbf"],
+				init_threads: 1,
 				attribution: "openrouteservice.org, OpenStreetMap contributors, tmc - BASt",
 				distance_approximation: true,
 				profiles: {
